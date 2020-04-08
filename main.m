@@ -1,8 +1,8 @@
 
 %% texture 1
-F = 0.042;
-theta = 0;
-sigma = 24;
+F = 0.059;
+theta = 135;
+sigma = 8;
 hx_score = zeros(1,4*sigma+1);
 hy_score = zeros(1,4*sigma+1);
 for i = 1:4*sigma+1
@@ -12,6 +12,7 @@ end
 
 img1 = imread('texture1.gif');
 img1 = cast(img1, 'double');
+figure()
 imshow(img1);
 title('texture1');
 [m,n] = size(img1);
@@ -29,16 +30,50 @@ for i = 2*sigma+1:m-sigma*2
     end
 end
 
+figure()
 imshow(new_img1);
-surf(98:512-97, 98:512-97, new_img1(98:512-97, 98:512-97));
+figure()
+surf(4*sigma+2:512-(4*sigma+1), 4*sigma+2:512-(4*sigma+1), new_img1(4*sigma+2:512-(4*sigma+1), 4*sigma+2:512-(4*sigma+1)));
 xlabel('x');
 ylabel('y');
 zlabel('m(x,y)');
 shading interp;
 
+% Smooth
+sigma_s = 24;
+g_score = zeros(1,4*sigma_s+1);
+for i = 1:4*sigma_s+1
+    g_score(i) = g(sigma_s,i-2*sigma_s-1);
+end
+[m,n] = size(new_img1);
+new_img1_smooth = zeros(m,n);
+
+for i = 2*sigma_s+1:m-sigma_s*2
+    for j = 2*sigma_s+1:n - sigma_s*2 
+        new_img1_smooth(i,j) = g_score(1,:)*new_img1(i-2*sigma_s:i+2*sigma_s,j);
+    end
+end
+
+for i = 2*sigma_s+1:m-sigma_s*2
+    for j = 2*sigma_s+1:n - sigma_s*2 
+        new_img1_smooth(i,j) =  new_img1_smooth(i, j-2*sigma_s:j+2*sigma_s)*g_score(1,:)';
+        new_img1_smooth(i,j) = abs(new_img1_smooth(i,j));
+    end
+end
+
+figure()
+imshow(new_img1_smooth);
+figure()
+surf(4*sigma_s+2:512-(4*sigma_s+1), 4*sigma_s+2:512-(4*sigma_s+1), new_img1_smooth(4*sigma_s+2:512-(4*sigma_s+1), 4*sigma_s+2:512-(4*sigma_s+1)));
+xlabel('x');
+ylabel('y');
+zlabel('m(x,y)');
+shading interp;
+
+
 %% texture2
-F = 0.059;
-theta = 135;
+F = 0.042;
+theta = 0;
 sigma = 24;
 hx_score = zeros(1,4*sigma+1);
 hy_score = zeros(1,4*sigma+1);
@@ -49,6 +84,7 @@ end
 
 img2 = imread('texture2.gif');
 img2 = cast(img2, 'double');
+figure()
 imshow(img2);
 title('texture2');
 [m,n] = size(img2);
@@ -66,8 +102,41 @@ for i = 2*sigma+1:m-sigma*2
     end
 end
 
-%imshow(new_img1);
+figure()
+imshow(new_img2);
+figure()
 surf(98:512-97, 98:512-97, new_img2(98:512-97, 98:512-97));
+xlabel('x');
+ylabel('y');
+zlabel('m(x,y)');
+shading interp;
+
+% Smooth
+sigma_s = 24;
+g_score = zeros(1,4*sigma_s+1);
+for i = 1:4*sigma_s+1
+    g_score(i) = g(sigma_s,i-2*sigma_s-1);
+end
+[m,n] = size(new_img1);
+new_img2_smooth = zeros(m,n);
+
+for i = 2*sigma_s+1:m-sigma_s*2
+    for j = 2*sigma_s+1:n - sigma_s*2 
+        new_img2_smooth(i,j) = g_score(1,:)*new_img2(i-2*sigma_s:i+2*sigma_s,j);
+    end
+end
+
+for i = 2*sigma_s+1:m-sigma_s*2
+    for j = 2*sigma_s+1:n - sigma_s*2 
+        new_img2_smooth(i,j) =  new_img2_smooth(i, j-2*sigma_s:j+2*sigma_s)*g_score(1,:)';
+        new_img2_smooth(i,j) = abs(new_img2_smooth(i,j));
+    end
+end
+
+figure()
+imshow(new_img2_smooth);
+figure()
+surf(4*sigma_s+2:512-(4*sigma_s+1), 4*sigma_s+2:512-(4*sigma_s+1), new_img2_smooth(4*sigma_s+2:512-(4*sigma_s+1), 4*sigma_s+2:512-(4*sigma_s+1)));
 xlabel('x');
 ylabel('y');
 zlabel('m(x,y)');
