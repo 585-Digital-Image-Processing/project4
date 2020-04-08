@@ -31,7 +31,8 @@ for i = 2*sigma+1:m-sigma*2
 end
 
 figure()
-imshow(new_img1);
+gray1 = mat2gray(new_img1);
+imshow(gray1);
 figure()
 surf(4*sigma+2:512-(4*sigma+1), 4*sigma+2:512-(4*sigma+1), new_img1(4*sigma+2:512-(4*sigma+1), 4*sigma+2:512-(4*sigma+1)));
 xlabel('x');
@@ -62,7 +63,8 @@ for i = 2*sigma_s+1:m-sigma_s*2
 end
 
 figure()
-imshow(new_img1_smooth);
+gray1_s = mat2gray(new_img1_smooth);
+imshow(gray1_s);
 figure()
 surf(4*sigma_s+2:512-(4*sigma_s+1), 4*sigma_s+2:512-(4*sigma_s+1), new_img1_smooth(4*sigma_s+2:512-(4*sigma_s+1), 4*sigma_s+2:512-(4*sigma_s+1)));
 xlabel('x');
@@ -103,7 +105,8 @@ for i = 2*sigma+1:m-sigma*2
 end
 
 figure()
-imshow(new_img2);
+gray2 = mat2gray(new_img2);
+imshow(gray2);
 figure()
 surf(98:512-97, 98:512-97, new_img2(98:512-97, 98:512-97));
 xlabel('x');
@@ -134,7 +137,8 @@ for i = 2*sigma_s+1:m-sigma_s*2
 end
 
 figure()
-imshow(new_img2_smooth);
+gray2_s = mat2gray(new_img2);
+imshow(gray2_s);
 figure()
 surf(4*sigma_s+2:512-(4*sigma_s+1), 4*sigma_s+2:512-(4*sigma_s+1), new_img2_smooth(4*sigma_s+2:512-(4*sigma_s+1), 4*sigma_s+2:512-(4*sigma_s+1)));
 xlabel('x');
