@@ -74,7 +74,7 @@ ylabel('y');
 zlabel('m(x,y)');
 shading interp;
 
-segment(new_img10_smooth, img1, 22, 3.6e-9);
+segment(new_img10_smooth, img1, 24, 3.6e-9);
 
 %% texture2
 F = 0.059;
