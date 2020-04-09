@@ -246,13 +246,13 @@ new_img40_smooth = zeros(m,n);
 
 for i = 2*sigma_s+1:m-sigma_s*2
     for j = 2*sigma_s+1:n - sigma_s*2
-        new_img40_smooth(i,j) = g_score(1,:)*new_img40(i-2*sigma_s:i+2*sigma_s,j);
+        new_img4_smooth(i,j) = g_score(1,:)*new_img40(i-2*sigma_s:i+2*sigma_s,j);
     end
 end
 
 for i = 2*sigma_s+1:m-sigma_s*2
     for j = 2*sigma_s+1:n - sigma_s*2
-        new_img40_smooth(i,j) =  new_img40_smooth(i, j-2*sigma_s:j+2*sigma_s)*g_score(1,:)';
+        new_img40_smooth(i,j) =  new_img4_smooth(i, j-2*sigma_s:j+2*sigma_s)*g_score(1,:)';
 
     end
 end
