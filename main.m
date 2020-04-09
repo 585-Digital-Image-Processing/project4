@@ -193,7 +193,7 @@ shading interp;
 %% d4d29
 F = 0.6038;
 theta = -50.5;
-sigma = 8;
+sigma = 24;
 hx_score = zeros(1,4*sigma+1);
 hy_score = zeros(1,4*sigma+1);
 for i = 1:4*sigma+1
@@ -233,9 +233,8 @@ ylabel('y');
 zlabel('m(x,y)');
 shading interp;
 
-
 % Smooth
-sigma_s = 40;
+sigma_s = 24;
 g_score = zeros(1,4*sigma_s+1);
 for i = 1:4*sigma_s+1
     g_score(i) = g(sigma_s,i-2*sigma_s-1);
