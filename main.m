@@ -158,6 +158,7 @@ for i = 1:4*sigma+1
 end
 
 img3 = imread('d9d77.gif');
+figure();
 imshow(img3);
 title('d9d77');
 img3 = cast(img3, 'double');
@@ -176,7 +177,10 @@ for i = 2*sigma+1:m-sigma*2
     end
 end
 
-%imshow(new_img3);
+figure()
+gray3 = mat2gray(new_img3);
+imshow(gray3);
+figure()
 surf(2*sigma+1:m-sigma*2, 2*sigma+1:m-sigma*2, new_img3(2*sigma+1:m-sigma*2, 2*sigma+1:m-sigma*2));
 xlabel('x');
 ylabel('y');
