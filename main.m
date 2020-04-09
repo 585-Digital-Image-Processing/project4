@@ -28,13 +28,13 @@ end
 for i = 2*sigma+1:m-sigma*2
     i
     for j = 2*sigma+1:n - sigma*2
-        new_img10(i,j) =  new_img1(i, j-2*sigma:j+2*sigma)*hy_score(1,:)';       
+        new_img10(i,j) =  new_img1(i, j-2*sigma:j+2*sigma)*hy_score(1,:)';
     end
 end
 new_img10 = abs(new_img10);
 
 figure()
-gray1 = mat2gray(new_img10);
+gray1 = mat2gray(new_img10(2*sigma+1:m-sigma*2,2*sigma+1:n - sigma*2));
 imshow(gray1);
 figure()
 surf(new_img10(4*sigma+1:m-4*sigma, 4*sigma+1:n-4*sigma));
@@ -60,8 +60,7 @@ end
 
 for i = 2*sigma_s+1:m-sigma_s*2
     for j = 2*sigma_s+1:n - sigma_s*2
-        new_img10_smooth(i,j) =  new_img1_smooth(i, j-2*sigma_s:j+2*sigma_s)*g_score(1,:)';
-        
+        new_img10_smooth(i,j) =  new_img1_smooth(i, j-2*sigma_s:j+2*sigma_s)*g_score(1,:)';        
     end
 end
 new_img10_smooth = abs(new_img10_smooth);
@@ -102,12 +101,12 @@ end
 for i = 2*sigma+1:m-sigma*2
     for j = 2*sigma+1:n - sigma*2
         new_img2(i,j) =  new_img2(i, j-2*sigma:j+2*sigma)*hy_score(1,:)';
-        
+
     end
 end
 new_img2 = abs(new_img2);
 figure()
-gray2 = mat2gray(new_img2);
+gray2 = mat2gray(new_img2(2*sigma+1:m-sigma*2,2*sigma+1:n - sigma*2));
 imshow(gray2);
 figure()
 surf(new_img2(4*sigma+1:m-4*sigma, 4*sigma+1:n-4*sigma));
@@ -132,7 +131,7 @@ for i = 2*sigma_s+1:m-sigma_s*2
 end
 
 for i = 2*sigma_s+1:m-sigma_s*2
-    for j = 2*sigma+1:n - sigma*2
+    for j = 2*sigma_s+1:n - sigma_s*2
         new_img2_smooth(i,j) =  new_img2_smooth(i, j-2*sigma_s:j+2*sigma_s)*g_score(1,:)';
         new_img2_smooth(i,j) = abs(new_img2_smooth(i,j));
     end
@@ -141,7 +140,7 @@ end
 
 
 figure()
-gray2_s = mat2gray(new_img2);
+gray2_s = mat2gray(new_img2_smooth(2*sigma_s+1:m-2*sigma_s, 2*sigma_s+1:n-2*sigma_s));
 imshow(gray2_s);
 figure()
 surf(new_img2_smooth(4*sigma_s+1:m-4*sigma_s, 4*sigma_s+1:n-4*sigma_s));
@@ -182,7 +181,7 @@ for i = 2*sigma+1:m-sigma*2
 end
 
 figure()
-gray3 = mat2gray(new_img3);
+gray3 = mat2gray(new_img3(4*sigma+1:m-sigma*4, 4*sigma+1:n-sigma*4));
 imshow(gray3);
 figure()
 surf(new_img3(4*sigma+1:m-sigma*4, 4*sigma+1:n-sigma*4));
@@ -253,7 +252,7 @@ end
 for i = 2*sigma_s+1:m-sigma_s*2
     for j = 2*sigma_s+1:n - sigma_s*2
         new_img40_smooth(i,j) =  new_img4_smooth(i, j-2*sigma_s:j+2*sigma_s)*g_score(1,:)';
-        
+
     end
 end
 new_img40_smooth = abs(new_img40_smooth);
