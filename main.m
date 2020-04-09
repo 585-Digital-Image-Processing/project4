@@ -10,31 +10,46 @@ for i = 1:4*sigma+1
     hy_score(i) = hy(F, theta, sigma,i-2*sigma-1);
 end
 
-img1 = imread('texture1.gif');
+img1 = imread('texture2.gif');
 img1 = cast(img1, 'double');
 figure()
 imshow(img1);
-title('texture1');
+title('texture2');
 [m,n] = size(img1);
-new_img1 = zeros(m,n);
+new_img1 = img1;
 for i = 2*sigma+1:m-sigma*2
-    for j = 2*sigma+1:n - sigma*2 
+    for j = 1:n
         new_img1(i,j) = hx_score(1,:)*img1(i-2*sigma:i+2*sigma,j);
     end
 end
 
-for i = 2*sigma+1:m-sigma*2
+for i = 1:m
     for j = 2*sigma+1:n - sigma*2 
         new_img1(i,j) =  new_img1(i, j-2*sigma:j+2*sigma)*hy_score(1,:)';
         new_img1(i,j) = abs(new_img1(i,j));
     end
 end
 
+for j = 1:2*sigma
+    new_img1(:,j) = 0;   
+end
+
+for j = n - sigma*2+1:n
+    new_img1(:,j) = 0;   
+end
+
+for i = 1:2*sigma
+    new_img1(i,:) = 0;   
+end
+
+for i = m - sigma*2+1:m
+    new_img1(i,:) = 0;   
+end
 figure()
 gray1 = mat2gray(new_img1);
 imshow(gray1);
 figure()
-surf(4*sigma+2:512-(4*sigma+1), 4*sigma+2:512-(4*sigma+1), new_img1(4*sigma+2:512-(4*sigma+1), 4*sigma+2:512-(4*sigma+1)));
+surf(2*sigma+1:m-2*sigma, 2*sigma+1:n-2*sigma, new_img1(2*sigma+1:m-2*sigma, 2*sigma+1:n-2*sigma));
 xlabel('x');
 ylabel('y');
 zlabel('m(x,y)');
@@ -50,23 +65,38 @@ end
 new_img1_smooth = zeros(m,n);
 
 for i = 2*sigma_s+1:m-sigma_s*2
-    for j = 2*sigma_s+1:n - sigma_s*2 
+    for j = 1:n
         new_img1_smooth(i,j) = g_score(1,:)*new_img1(i-2*sigma_s:i+2*sigma_s,j);
     end
 end
 
-for i = 2*sigma_s+1:m-sigma_s*2
+for i = 1:m
     for j = 2*sigma_s+1:n - sigma_s*2 
         new_img1_smooth(i,j) =  new_img1_smooth(i, j-2*sigma_s:j+2*sigma_s)*g_score(1,:)';
         new_img1_smooth(i,j) = abs(new_img1_smooth(i,j));
     end
 end
 
+for j = 1:2*sigma
+    new_img1(:,j) = 0;   
+end
+
+for j = n - sigma*2+1:n
+    new_img1(:,j) = 0;   
+end
+
+for i = 1:2*sigma
+    new_img1(i,:) = 0;   
+end
+
+for i = m - sigma*2+1:m
+    new_img1(i,:) = 0;   
+end
 figure()
 gray1_s = mat2gray(new_img1_smooth);
 imshow(gray1_s);
 figure()
-surf(4*sigma_s+2:512-(4*sigma_s+1), 4*sigma_s+2:512-(4*sigma_s+1), new_img1_smooth(4*sigma_s+2:512-(4*sigma_s+1), 4*sigma_s+2:512-(4*sigma_s+1)));
+surf(2*sigma_s+1:m-2*sigma_s, 2*sigma_s+1:n-2*sigma_s, new_img1_smooth(2*sigma_s+1:m-2*sigma_s, 2*sigma_s+1:n-2*sigma_s));
 xlabel('x');
 ylabel('y');
 zlabel('m(x,y)');
@@ -84,11 +114,11 @@ for i = 1:4*sigma+1
     hy_score(i) = hy(F, theta, sigma,i-2*sigma-1);
 end
 
-img2 = imread('texture2.gif');
+img2 = imread('texture1.gif');
 img2 = cast(img2, 'double');
 figure()
 imshow(img2);
-title('texture2');
+title('texture1');
 [m,n] = size(img2);
 new_img2 = zeros(m,n);
 for i = 2*sigma+1:m-sigma*2
@@ -108,7 +138,7 @@ figure()
 gray2 = mat2gray(new_img2);
 imshow(gray2);
 figure()
-surf(98:512-97, 98:512-97, new_img2(98:512-97, 98:512-97));
+surf(2*sigma+1:m-2*sigma, 2*sigma+1:n-2*sigma, new_img2(2*sigma+1:m-2*sigma, 2*sigma+1:n-2*sigma));
 xlabel('x');
 ylabel('y');
 zlabel('m(x,y)');
@@ -120,33 +150,36 @@ g_score = zeros(1,4*sigma_s+1);
 for i = 1:4*sigma_s+1
     g_score(i) = g(sigma_s,i-2*sigma_s-1);
 end
-[m,n] = size(new_img1);
+[m,n] = size(new_img2);
 new_img2_smooth = zeros(m,n);
 
 for i = 2*sigma_s+1:m-sigma_s*2
-    for j = 2*sigma_s+1:n - sigma_s*2 
+    for j = 2*sigma+1:n - sigma*2
         new_img2_smooth(i,j) = g_score(1,:)*new_img2(i-2*sigma_s:i+2*sigma_s,j);
     end
 end
 
 for i = 2*sigma_s+1:m-sigma_s*2
-    for j = 2*sigma_s+1:n - sigma_s*2 
+    for j = 2*sigma+1:n - sigma*2 
         new_img2_smooth(i,j) =  new_img2_smooth(i, j-2*sigma_s:j+2*sigma_s)*g_score(1,:)';
         new_img2_smooth(i,j) = abs(new_img2_smooth(i,j));
     end
 end
 
+
+
 figure()
 gray2_s = mat2gray(new_img2);
 imshow(gray2_s);
 figure()
-surf(4*sigma_s+2:512-(4*sigma_s+1), 4*sigma_s+2:512-(4*sigma_s+1), new_img2_smooth(4*sigma_s+2:512-(4*sigma_s+1), 4*sigma_s+2:512-(4*sigma_s+1)));
+surf(1:512, 1:512, new_img2_smooth);
+surf(2*sigma_s+1:m-2*sigma_s, 2*sigma_s+1:n-2*sigma_s, new_img2_smooth(2*sigma_s+1:m-2*sigma_s, 2*sigma_s+1:n-2*sigma_s));
 xlabel('x');
 ylabel('y');
 zlabel('m(x,y)');
 shading interp;
 
-%%
+%% d9d77
 F = 0.063;
 theta = 60;
 sigma = 36;
@@ -187,10 +220,10 @@ ylabel('y');
 zlabel('m(x,y)');
 shading interp;
 
-%%
-F = 0.063;
-theta = 60;
-sigma = 36;
+%% d4d29
+F = 0.0638;
+theta = -50.5;
+sigma = 8;
 hx_score = zeros(1,4*sigma+1);
 hy_score = zeros(1,4*sigma+1);
 for i = 1:4*sigma+1
@@ -198,9 +231,9 @@ for i = 1:4*sigma+1
     hy_score(i) = hy(F, theta, sigma,i-2*sigma-1);
 end
 
-img4 = imread('d9d77.gif');
+img4 = imread('d4d29.gif');
 imshow(img4);
-title('d9d77');
+title('d4d29');
 img4 = cast(img4, 'double');
 [m,n] = size(img4);
 new_img4 = zeros(m,n);
