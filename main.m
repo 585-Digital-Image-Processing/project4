@@ -26,7 +26,7 @@ end
 
 for i = 2*sigma+1:m-sigma*2
     for j = 2*sigma+1:n - sigma*2
-        new_img10(i,j) =  new_img1(i, j-2*sigma:j+2*sigma)*hy_score(1,:)';       
+        new_img10(i,j) =  new_img1(i, j-2*sigma:j+2*sigma)*hy_score(1,:)';
     end
 end
 new_img10 = abs(new_img10);
@@ -59,7 +59,7 @@ end
 for i = 2*sigma_s+1:m-sigma_s*2
     for j = 2*sigma_s+1:n - sigma_s*2
         new_img10_smooth(i,j) =  new_img1_smooth(i, j-2*sigma_s:j+2*sigma_s)*g_score(1,:)';
-        
+
     end
 end
 new_img10_smooth = abs(new_img10_smooth);
@@ -100,7 +100,7 @@ end
 
 for i = 2*sigma+1:m-sigma*2
     for j = 2*sigma+1:n - sigma*2
-        new_img20(i,j) =  new_img2(i, j-2*sigma:j+2*sigma)*hy_score(1,:)';        
+        new_img20(i,j) =  new_img2(i, j-2*sigma:j+2*sigma)*hy_score(1,:)';
     end
 end
 new_img20 = abs(new_img20);
@@ -192,7 +192,7 @@ shading interp;
 %% d4d29
 F = 0.6038;
 theta = -50.5;
-sigma = 8;
+sigma = 24;
 hx_score = zeros(1,4*sigma+1);
 hy_score = zeros(1,4*sigma+1);
 for i = 1:4*sigma+1
@@ -223,17 +223,17 @@ end
 new_img40 = abs(new_img40);
 
 figure()
-mat2gray(new_img40);
+gray4=mat2gray(new_img40(2*sigma+1:m-sigma*2, 2*sigma+1:n-sigma*2));
+imshow(gray4)
 figure()
-surf(new_img40(4*sigma+1:m-sigma*4, 4*sigma+1:n-sigma*4));
+surf(new_img40(2*sigma+1:m-sigma*2, 2*sigma+1:n-sigma*2));
 xlabel('x');
 ylabel('y');
 zlabel('m(x,y)');
 shading interp;
 
-
 % Smooth
-sigma_s = 40;
+sigma_s = 24;
 g_score = zeros(1,4*sigma_s+1);
 for i = 1:4*sigma_s+1
     g_score(i) = g(sigma_s,i-2*sigma_s-1);
@@ -250,16 +250,16 @@ end
 
 for i = 2*sigma_s+1:m-sigma_s*2
     for j = 2*sigma_s+1:n - sigma_s*2
-        new_img40_smooth(i,j) =  new_img4_smooth(i, j-2*sigma_s:j+2*sigma_s)*g_score(1,:)';        
+        new_img40_smooth(i,j) =  new_img4_smooth(i, j-2*sigma_s:j+2*sigma_s)*g_score(1,:)';
     end
 end
 new_img40_smooth = abs(new_img40_smooth);
 
 figure()
-gray4_s = mat2gray(new_img40_smooth);
+gray4_s = mat2gray(new_img40_smooth(2*sigma_s+1:m-sigma_s*2, 2*sigma_s+1:n-sigma_s*2));
 imshow(gray4_s);
 figure()
-surf(new_img40_smooth(3*sigma_s+1:m-sigma_s*3, 3*sigma_s+1:n-sigma_s*3));
+surf(new_img40_smooth(2*sigma_s+1:m-sigma_s*2, 2*sigma_s+1:n-sigma_s*2));
 xlabel('x');
 ylabel('y');
 zlabel('m(x,y)');
