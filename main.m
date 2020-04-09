@@ -224,9 +224,10 @@ end
 new_img40 = abs(new_img40);
 
 figure()
-mat2gray(new_img40);
+gray4=mat2gray(new_img40(2*sigma+1:m-sigma*2, 2*sigma+1:n-sigma*2));
+imshow(gray4)
 figure()
-surf(new_img40(4*sigma+1:m-sigma*4, 4*sigma+1:n-sigma*4));
+surf(new_img40(2*sigma+1:m-sigma*2, 2*sigma+1:n-sigma*2));
 xlabel('x');
 ylabel('y');
 zlabel('m(x,y)');
@@ -258,10 +259,10 @@ end
 new_img40_smooth = abs(new_img40_smooth);
 
 figure()
-gray4_s = mat2gray(new_img40_smooth);
+gray4_s = mat2gray(new_img40_smooth(2*sigma_s+1:m-sigma_s*2, 2*sigma_s+1:n-sigma_s*2));
 imshow(gray4_s);
 figure()
-surf(new_img40_smooth);
+surf(new_img40_smooth(2*sigma_s+1:m-sigma_s*2, 2*sigma_s+1:n-sigma_s*2));
 xlabel('x');
 ylabel('y');
 zlabel('m(x,y)');
