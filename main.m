@@ -207,6 +207,7 @@ for i = 1:4*sigma+1
 end
 
 img4 = imread('d4d29.gif');
+figure();
 imshow(img4);
 title('d4d29');
 img4 = cast(img4, 'double');
