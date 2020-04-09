@@ -1,0 +1,9 @@
+function Y = segment(X, A, sigma, threshold)
+[m,n] = size(X);
+Y = (X >= threshold);
+Y= Y*255;
+Y([1:3*sigma m-3*sigma + 1:m],:) = 255; 
+Y(:,[1:3*sigma n-3*sigma + 1:n]) = 255;
+A = cat(3, A, Y, ones(size(A))*255);
+imshow(A);
+end
