@@ -31,7 +31,7 @@ for i = 2*sigma+1:m-sigma*2
 end
 
 figure()
-gray1 = mat2gray(new_img1(4*sigma+1:m-sigma*4,4*sigma+1:n - sigma*4));
+gray1 = mat2gray(new_img1(2*sigma+1:m-sigma*2,2*sigma+1:n - sigma*2));
 imshow(gray1);
 figure()
 surf(new_img1(4*sigma+1:m-4*sigma, 4*sigma+1:n-4*sigma));
@@ -63,7 +63,7 @@ for i = 2*sigma_s+1:m-sigma_s*2
 end
 
 figure()
-gray1_s = mat2gray(new_img1_smooth(4*sigma+1:m-sigma*4,4*sigma+1:n - sigma*4));
+gray1_s = mat2gray(new_img1_smooth(2*sigma+1:m-sigma*2,2*sigma+1:n - sigma*2));
 imshow(gray1_s);
 figure()
 surf(new_img1_smooth(4*sigma_s+1:m-4*sigma_s, 4*sigma_s+1:n-4*sigma_s));
@@ -104,7 +104,7 @@ for i = 2*sigma+1:m-sigma*2
 end
 
 figure()
-gray2 = mat2gray(new_img2(4*sigma+1:m-sigma*4,4*sigma+1:n - sigma*4));
+gray2 = mat2gray(new_img2(2*sigma+1:m-sigma*2,2*sigma+1:n - sigma*2));
 imshow(gray2);
 figure()
 surf(new_img2(4*sigma+1:m-4*sigma, 4*sigma+1:n-4*sigma));
@@ -138,7 +138,7 @@ end
 
 
 figure()
-gray2_s = mat2gray(new_img2_smooth(4*sigma_s+1:m-4*sigma_s, 4*sigma_s+1:n-4*sigma_s));
+gray2_s = mat2gray(new_img2_smooth(2*sigma_s+1:m-2*sigma_s, 2*sigma_s+1:n-2*sigma_s));
 imshow(gray2_s);
 figure()
 surf(new_img2_smooth(4*sigma_s+1:m-4*sigma_s, 4*sigma_s+1:n-4*sigma_s));
@@ -189,7 +189,7 @@ zlabel('m(x,y)');
 shading interp;
 
 %% d4d29
-F = 0.0638;
+F = 0.6038;
 theta = -50.5;
 sigma = 8;
 hx_score = zeros(1,4*sigma+1);
@@ -219,10 +219,10 @@ for i = 2*sigma+1:m-sigma*2
 end
 
 figure()
-gray4=mat2gray(new_img4(4*sigma+1:m-sigma*4, 4*sigma+1:n-sigma*4));
+gray4=mat2gray(new_img4(2*sigma+1:m-sigma*2, 2*sigma+1:n-sigma*2));
 imshow(gray4);
 figure()
-surf(new_img4(4*sigma+1:m-sigma*4, 4*sigma+1:n-sigma*4));
+surf(new_img4(2*sigma+1:m-sigma*2, 2*sigma+1:n-sigma*2));
 xlabel('x');
 ylabel('y');
 zlabel('m(x,y)');
