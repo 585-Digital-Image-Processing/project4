@@ -49,6 +49,7 @@ for i = 1:4*sigma_s+1
 end
 [m,n] = size(new_img1);
 new_img1_smooth = zeros(m,n);
+new_img10_smooth = zeros(m,n);
 
 for i = 2*sigma_s+1:m-sigma_s*2
     for j = 2*sigma_s+1:n - sigma_s*2
@@ -183,7 +184,7 @@ figure()
 gray3 = mat2gray(new_img30);
 imshow(gray3);
 figure()
-surf(new_img30(4*sigma+1:m-sigma*4, 4*sigma+1:n-sigma*4));
+surf(new_img30(3*sigma+1:m-sigma*3, 3*sigma+1:n-sigma*3));
 xlabel('x');
 ylabel('y');
 zlabel('m(x,y)');
@@ -214,7 +215,6 @@ for i = 2*sigma+1:m-sigma*2
 end
 
 for i = 2*sigma+1:m-sigma*2
-    i
     for j = 2*sigma+1:n - sigma*2
         new_img40(i,j) =  new_img4(i, j-2*sigma:j+2*sigma)*hy_score(1,:)';
         %new_img40(i,j) = abs(new_img40(i,j));
