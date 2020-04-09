@@ -32,7 +32,7 @@ end
 new_img10 = abs(new_img10);
 
 figure()
-gray1 = mat2gray(new_img10);
+gray1 = mat2gray(new_img10(2*sigma+1:m-2*sigma, 2*sigma+1:n-2*sigma));
 imshow(gray1);
 figure()
 surf(new_img10(4*sigma+1:m-4*sigma, 4*sigma+1:n-4*sigma));
@@ -49,7 +49,7 @@ for i = 1:4*sigma_s+1
 end
 [m,n] = size(new_img1);
 new_img1_smooth = zeros(m,n);
-
+new_img10_smooth = zeros(m,n);
 for i = 2*sigma_s+1:m-sigma_s*2
     for j = 2*sigma_s+1:n - sigma_s*2
         new_img1_smooth(i,j) = g_score(1,:)*new_img10(i-2*sigma_s:i+2*sigma_s,j);
@@ -64,10 +64,10 @@ for i = 2*sigma_s+1:m-sigma_s*2
 end
 new_img10_smooth = abs(new_img10_smooth);
 figure()
-gray1_s = mat2gray(new_img10_smooth);
+gray1_s = mat2gray(new_img10_smooth(2*sigma_s+1:m-2*sigma_s,2*sigma_s+1:n-2*sigma_s));
 imshow(gray1_s);
 figure()
-surf(new_img10_smooth(4*sigma+1:m-4*sigma, 4*sigma+1:n-4*sigma));
+surf(new_img10_smooth(4*sigma_s+1:m-4*sigma_s, 4*sigma_s+1:n-4*sigma_s));
 xlabel('x');
 ylabel('y');
 zlabel('m(x,y)');
@@ -105,7 +105,7 @@ for i = 2*sigma+1:m-sigma*2
 end
 new_img20 = abs(new_img20);
 figure()
-gray2 = mat2gray(new_img20);
+gray2 = mat2gray(new_img20(2*sigma+1:m-2*sigma, 2*sigma+1:n-2*sigma));
 imshow(gray2);
 figure()
 surf(new_img20(4*sigma+1:m-4*sigma, 4*sigma+1:n-4*sigma));
@@ -139,7 +139,7 @@ new_img20_smooth = abs(new_img20_smooth);
 
 
 figure()
-gray2_s = mat2gray(new_img20_smooth);
+gray2_s = mat2gray(new_img20_smooth(2*sigma_s+1:m-2*sigma_s, 2*sigma_s+1:n-2*sigma_s));
 imshow(gray2_s);
 figure()
 surf(new_img20_smooth(4*sigma_s+1:m-4*sigma_s, 4*sigma_s+1:n-4*sigma_s));
@@ -180,7 +180,7 @@ for i = 2*sigma+1:m-sigma*2
 end
 new_img30 = abs(new_img30);
 figure()
-gray3 = mat2gray(new_img30);
+gray3 = mat2gray(new_img30(2*sigma+1:m-sigma*2, 2*sigma+1:n-sigma*2));
 imshow(gray3);
 figure()
 surf(new_img30(4*sigma+1:m-sigma*4, 4*sigma+1:n-sigma*4));
