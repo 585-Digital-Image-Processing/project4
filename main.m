@@ -183,5 +183,42 @@ ylabel('y');
 zlabel('m(x,y)');
 shading interp;
 
+%%
+F = 0.063;
+theta = 60;
+sigma = 36;
+hx_score = zeros(1,4*sigma+1);
+hy_score = zeros(1,4*sigma+1);
+for i = 1:4*sigma+1
+    hx_score(i) = hx(F, theta, sigma,i-2*sigma-1);
+    hy_score(i) = hy(F, theta, sigma,i-2*sigma-1);
+end
+
+img4 = imread('d9d77.gif');
+imshow(img4);
+title('d9d77');
+img4 = cast(img4, 'double');
+[m,n] = size(img4);
+new_img4 = zeros(m,n);
+for i = 2*sigma+1:m-sigma*2
+    for j = 2*sigma+1:n - sigma*2 
+        new_img4(i,j) = hx_score(1,:)*img4(i-2*sigma:i+2*sigma,j);
+    end
+end
+
+for i = 2*sigma+1:m-sigma*2
+    for j = 2*sigma+1:n - sigma*2 
+        new_img4(i,j) =  new_img4(i, j-2*sigma:j+2*sigma)*hy_score(1,:)';
+        new_img4(i,j) = abs(new_img4(i,j));
+    end
+end
+
+%imshow(new_img3);
+surf(2*sigma+1:m-sigma*2, 2*sigma+1:m-sigma*2, new_img4(2*sigma+1:m-sigma*2, 2*sigma+1:m-sigma*2));
+xlabel('x');
+ylabel('y');
+zlabel('m(x,y)');
+shading interp;
+
 
  
