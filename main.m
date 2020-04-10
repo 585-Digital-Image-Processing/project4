@@ -74,6 +74,8 @@ ylabel('y');
 zlabel('m(x,y)');
 shading interp;
 
+segment(new_img10_smooth, img1, 24, 3.6e-9);
+
 %% texture2
 F = 0.059;
 theta = 135;
@@ -148,6 +150,7 @@ xlabel('x');
 ylabel('y');
 zlabel('m(x,y)');
 shading interp;
+segment(new_img20_smooth,img2, 24,9*1e-8);
 
 %% d9d77
 F = 0.063;
@@ -189,11 +192,13 @@ xlabel('x');
 ylabel('y');
 zlabel('m(x,y)');
 shading interp;
+%Segmentation
+segment(new_img30, img3, 20,0.5e-3);
 
 %% d4d29
 F = 0.6038;
 theta = -50.5;
-sigma = 24;
+sigma = 8;
 hx_score = zeros(1,4*sigma+1);
 hy_score = zeros(1,4*sigma+1);
 for i = 1:4*sigma+1
@@ -202,6 +207,7 @@ for i = 1:4*sigma+1
 end
 
 img4 = imread('d4d29.gif');
+figure();
 imshow(img4);
 title('d4d29');
 img4 = cast(img4, 'double');
@@ -233,7 +239,7 @@ zlabel('m(x,y)');
 shading interp;
 
 % Smooth
-sigma_s = 24;
+sigma_s = 30;
 g_score = zeros(1,4*sigma_s+1);
 for i = 1:4*sigma_s+1
     g_score(i) = g(sigma_s,i-2*sigma_s-1);
@@ -259,8 +265,9 @@ figure()
 gray4_s = mat2gray(new_img40_smooth(2*sigma_s+1:m-sigma_s*2, 2*sigma_s+1:n-sigma_s*2));
 imshow(gray4_s);
 figure()
-surf(new_img40_smooth(2*sigma_s+1:m-sigma_s*2, 2*sigma_s+1:n-sigma_s*2));
+surf(new_img40_smooth(3*sigma_s+1:m-sigma_s*3, 3*sigma_s+1:n-sigma_s*3));
 xlabel('x');
 ylabel('y');
 zlabel('m(x,y)');
 shading interp;
+segment(new_img40_smooth, img4, 20, 9.9e-9);
